@@ -20,6 +20,9 @@ Route::get('/test',function() {
 Route::get('/seller',function(){
     return view('newseller');
 });
+Route::get('/profile',function(){
+    return view('profile');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>{{ config('', 'MyShop') }}</title>
+    <title>{{ config('','MyShop') }}</title>
     <!-- Favicon-->
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
@@ -45,16 +45,25 @@
             <p>Please wait...</p>
         </div>
     </div>
-    @include('include/navigation')
-    @include('include/left')
-    
-    <section class="content">
-        <div class="container-fluid">
-            <div class="block-header">
-                @yield('content')
-            </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
         </div>
-    </section>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    @include('include.navigation')
+    @include('include.left')
+
+    @yield('content')
 
     <!-- Jquery Core Js -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -73,6 +82,7 @@
 
     <!-- Custom Js -->
     <script src="../../js/admin.js"></script>
+    <script src="../../js/pages/examples/profile.js"></script>
 
     <!-- Demo Js -->
     <script src="../../js/demo.js"></script>

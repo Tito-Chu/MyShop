@@ -1,4 +1,4 @@
 @extends('layouts.index')
 @section('content')
-<h1>hey</h1>
+    <small>Comming soon!</small>
 @endsection
