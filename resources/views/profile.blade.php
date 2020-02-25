@@ -4,47 +4,60 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row clearfix">
-            @php
-                $type = Auth::user()->account_type;
-            @endphp
-            @switch($type)
-                <div class="col-xs-12 col-sm-3">
-                    <div class="card profile-card">
-                        <div class="profile-header">&nbsp;</div>
-                        <div class="profile-body">
-                            <div class="image-area">
-                                <img src="../../images/user-lg.jpg" alt="AdminBSB - Profile Image" />
-                            </div>
-                            <div class="content-area">
-                                <h3>{{ Auth::user()->name }}</h3>
-                                {{--
-                                    comming soon for the sellers
-                                    <p>Web Software Developer</p>
-                                --}}
-                                <p>
-                                Administrator
-                                </p>
-                            </div>
+            <div class="col-xs-12 col-sm-3">
+                <div class="card profile-card">
+                    <div class="profile-header">&nbsp;</div>
+                    <div class="profile-body">
+                        <div class="image-area">
+                            <img src="../../images/user-lg.jpg" alt="AdminBSB - Profile Image" />
                         </div>
-                        <div class="profile-footer">
-                            <ul>
-                                <li>
-                                    <span>Followers</span>
-                                    <span>1.234</span>
-                                </li>
-                                <li>
-                                    <span>Following</span>
-                                    <span>1.201</span>
-                                </li>
-                                <li>
-                                    <span>Friends</span>
-                                    <span>14.252</span>
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-lg waves-effect btn-block">FOLLOW</button>
+                        <div class="content-area">
+                            <h3>{{ Auth::user()->name }}</h3>
+                            {{--
+                                comming soon for the sellers
+                                <p>Web Software Developer</p>
+                            --}}
+                            <p>
+                                @php
+                                    $type = Auth::user()->account_type;
+                                @endphp
+                                @switch($type)
+                                    @case(Auth::user()->account_type == 'admin')
+                                       Administrator
+                                       @break
+                                    @case(Auth::user()->account_type == 'seller')
+                                        Seller
+                                        @break
+                                    @case(Auth::user()->account_type == 'buyyer')
+                                        Buyyer
+                                        @break
+                                    @default
+                                        
+                                @endswitch
+                            </p>
                         </div>
                     </div>
-
+                    <div class="profile-footer">
+                        <ul>
+                            <li>
+                                <span>Member Since</span>
+                                <span>{{Auth::user()->created_at}}</span>
+                            </li>
+                            @switch($type)
+                                @case(Auth::user()->account_type == 'seller')
+                                    Total Number Of Products
+                                    @break
+                                @default
+                                    
+                            @endswitch
+                        </ul>
+                        {{--
+                            this function is for seller there will be a button here to visit the shop!
+                            <button class="btn btn-primary btn-lg waves-effect btn-block">FOLLOW</button>
+                        --}}
+                    </div>
+                </div>
+                @if ($profile->count() > 0)
                     <div class="card card-about-me">
                         <div class="header">
                             <h2>ABOUT ME</h2>
@@ -53,8 +66,18 @@
                             <ul>
                                 <li>
                                     <div class="title">
-                                        <i class="material-icons">library_books</i>
-                                        Education
+                                        <i class="material-icons">group</i>
+                                        Gender
+                                    </div>
+                                    <div class="content">
+                                        Gender
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">cake</i>
+                                        Birthdate
                                     </div>
                                     <div class="content">
                                         B.S. in Computer Science from the University of Tennessee at Knoxville
@@ -71,14 +94,11 @@
                                 </li>
                                 <li>
                                     <div class="title">
-                                        <i class="material-icons">edit</i>
-                                        Skills
+                                        <i class="material-icons">phone</i>
+                                        Contact Number
                                     </div>
                                     <div class="content">
-                                        <span class="label bg-red">UI Design</span>
-                                        <span class="label bg-teal">JavaScript</span>
-                                        <span class="label bg-blue">PHP</span>
-                                        <span class="label bg-amber">Node.js</span>
+                                        contact number here
                                     </div>
                                 </li>
                                 <li>
@@ -93,20 +113,66 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                @case(Auth::user()->account_type == 'admin')
-                    Administrator
-                    @break
-                @case(Auth::user()->account_type == 'seller')
-                    Seller
-                    @break
-                @case(Auth::user()->account_type == 'buyyer')
-                    Buyyer
-                    @break
-                @default
-                    
-            @endswitch
-            
+                @else
+                    <div class="card card-about-me">
+                        <div class="header">
+                            <h2>ABOUT ME</h2>
+                        </div>
+                        <div class="body">
+                            <ul>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">group</i>
+                                        Gender
+                                    </div>
+                                    <div class="content">
+                                        Null
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">cake</i>
+                                        Birthdate
+                                    </div>
+                                    <div class="content">
+                                       Null
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">location_on</i>
+                                        Location
+                                    </div>
+                                    <div class="content">
+                                        Null
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">phone</i>
+                                        Contact Number
+                                    </div>
+                                    <div class="content">
+                                        Null
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="title">
+                                        <i class="material-icons">notes</i>
+                                        Description
+                                    </div>
+                                    <div class="content">
+                                        Null
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+                
+                
+            </div>
             <div class="col-xs-12 col-sm-9">
                 <div class="card">
                     <div class="body">
