@@ -13,6 +13,11 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // this function will check if the user is already logged in
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         //
