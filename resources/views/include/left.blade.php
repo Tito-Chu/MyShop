@@ -12,17 +12,18 @@
                         <div class="email">{{ Auth::user()->email}}</div>
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                      
                             <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                                <li><a href="/profile"><i class="material-icons" disabled>person</i>Profile</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons" disabled>group</i>Followers</a></li>
                                 <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
                                 <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         <i class="material-icons">input</i>{{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -30,6 +31,7 @@
                                     </form>
                                 </li>
                             </ul>
+                            
                         </div>
                     </div>
                 </div>

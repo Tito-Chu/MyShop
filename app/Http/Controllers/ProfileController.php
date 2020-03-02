@@ -25,7 +25,16 @@ class ProfileController extends Controller
         $profile = DB::table('profiles')
             ->where('account_id','$id')
             ->get();
-        return view('profile',compact('profile'));
+        if ($profile->count() > 0)
+        {
+            # code...
+            return view('profile',compact('profile'));
+        }
+        else
+        {
+            return view('/unknown');
+        }
+        
     }
 
     /**
@@ -47,6 +56,28 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request->all());
+        $account_id = Auth::user()->id;
+        $request->validate([
+            'gender' => ['required','max:5'],
+            'birthdate' => ['required','date'],
+            'address' => ['required'],
+            'description' => ['required','min:20'],
+            'contactnumber' => ['required','max:11','integer'],
+        ]);
+
+        $profile = new Profile([
+            'account_id'=>$account_id,
+            'gender' => $request->get('gender'),
+            'birthdate' => $request->get('birthdate'),
+            'description' => $request->get('description'),
+            'contactnumber' => $request->get('contactnumber'),
+        ]);
+        $profile->save();
+        return redirect('/home');
+
+       
+
     }
 
     /**

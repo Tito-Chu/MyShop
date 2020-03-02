@@ -28,7 +28,10 @@ Route::get('/profile',function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::apiResource('/profile','ProfileController');
+Route::resource('/profile','ProfileController');
+Route::get('/uknown', function(){
+    return view('unknown');
+});
 
 
 

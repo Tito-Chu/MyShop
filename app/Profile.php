@@ -13,5 +13,6 @@ class Profile extends Model
         'birthdate',
         'description',
         'contactnumber',
+        'address',
     ];
 }
