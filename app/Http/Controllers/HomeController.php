@@ -26,8 +26,9 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $profile = DB::table('profiles')
-            ->where('account_id','$id')
+            ->where('account_id',$id)
             ->get();
+
         return view('home',compact('profile'));
     }
 }

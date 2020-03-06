@@ -1,8 +1,9 @@
 @extends('layouts.index')
 @section('content')
     @if ($profile->count() > 0)
-        
+    
     @else
+        
         {{--
         <div class="alert alert-danger">
             <strong>You need to update the profile first.  click</strong> <a href="/profile" class="alert-link">here</a>.
@@ -18,7 +19,16 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <form action="{{ route('profile.store')}}" method="POST">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div><br />
+                        @endif
+                        <form action="{{ route('profile.store')}}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="NameSurname">Fullname</label>
@@ -49,7 +59,7 @@
                             <div class="form-group">
                                 <label for="Address">Address</label>
                                 <div class="form-line">
-                                    <input type="text" class="form-control" id="Address" name="Address" placeholder="Complete Address">
+                                    <input type="text" class="form-control" id="Address" name="address" placeholder="Complete Address">
                                 </div>
                             </div>
                             <div class="row">
@@ -82,7 +92,7 @@
                                     
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary-outline">Add contact</button>
+                            <button type="submit" class="btn btn-primary-outline">Update Profle</button>
   
                         </form>
                     </div>

@@ -22,8 +22,9 @@ class ProfileController extends Controller
     {
         //
         $id = Auth::user()->id;
+        //dd($id);
         $profile = DB::table('profiles')
-            ->where('account_id','$id')
+            ->where('account_id',$id)
             ->get();
         if ($profile->count() > 0)
         {
@@ -59,11 +60,11 @@ class ProfileController extends Controller
         //dd($request->all());
         $account_id = Auth::user()->id;
         $request->validate([
-            'gender' => ['required','max:5'],
+            'gender' => ['required','string'],
             'birthdate' => ['required','date'],
             'address' => ['required'],
-            'description' => ['required','min:20'],
-            'contactnumber' => ['required','max:11','integer'],
+            'description' => ['required'],
+            'contactnumber' => ['required','integer'],
         ]);
 
         $profile = new Profile([
@@ -72,11 +73,10 @@ class ProfileController extends Controller
             'birthdate' => $request->get('birthdate'),
             'description' => $request->get('description'),
             'contactnumber' => $request->get('contactnumber'),
+            'address' => $request->get('address'),
         ]);
         $profile->save();
-        return redirect('/home');
-
-       
+        return redirect('home');
 
     }
 
@@ -84,7 +84,7 @@ class ProfileController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resp``onse
      */
     public function show($id)
     {

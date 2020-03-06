@@ -58,61 +58,66 @@
                     </div>
                 </div>
                 @if ($profile->count() > 0)
-                    <div class="card card-about-me">
-                        <div class="header">
-                            <h2>ABOUT ME</h2>
-                        </div>
-                        <div class="body">
-                            <ul>
-                                <li>
-                                    <div class="title">
-                                        <i class="material-icons">group</i>
-                                        Gender
-                                    </div>
-                                    <div class="content">
-                                        Gender
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="title">
-                                        <i class="material-icons">cake</i>
-                                        Birthdate
-                                    </div>
-                                    <div class="content">
-                                        B.S. in Computer Science from the University of Tennessee at Knoxville
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="title">
-                                        <i class="material-icons">location_on</i>
-                                        Location
-                                    </div>
-                                    <div class="content">
-                                        Malibu, California
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="title">
-                                        <i class="material-icons">phone</i>
-                                        Contact Number
-                                    </div>
-                                    <div class="content">
-                                        contact number here
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="title">
-                                        <i class="material-icons">notes</i>
-                                        Description
-                                    </div>
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    @foreach ($profile as $prof)
+                        @if ($prof->account_id == Auth::user()->id)
+                            <div class="card card-about-me">
+                                <div class="header">
+                                    <h2>ABOUT ME</h2>
+                                </div>
+                                <div class="body">
+                                    <ul>
+                                        <li>
+                                            <div class="title">
+                                                <i class="material-icons">group</i>
+                                                Gender
+                                            </div>
+                                            <div class="content">
+                                                {{ $prof->gender}}
+                                            </div>
+                                        </li>
+        
+                                        <li>
+                                            <div class="title">
+                                                <i class="material-icons">cake</i>
+                                                Birthdate
+                                            </div>
+                                            <div class="content">
+                                                {{ $prof->birthdate}}
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="title">
+                                                <i class="material-icons">location_on</i>
+                                                Address
+                                            </div>
+                                            <div class="content">
+                                                {{ $prof->address}}
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="title">
+                                                <i class="material-icons">phone</i>
+                                                Contact Number
+                                            </div>
+                                            <div class="content">
+                                                (+63) {{ $prof->contactnumber}}
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="title">
+                                                <i class="material-icons">notes</i>
+                                                Description
+                                            </div>
+                                            <div class="content">
+                                                {{ $prof->description}}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                    
                 @else
                     <div class="card card-about-me">
                         <div class="header">
@@ -300,50 +305,54 @@
                                 <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
                                     <form class="form-horizontal">
                                         <div class="form-group">
-                                            <label for="NameSurname" class="col-sm-2 control-label">Name Surname</label>
-                                            <div class="col-sm-10">
+                                            <label for="NameSurname" class=" control-label">Fullname</label>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" id="NameSurname" name="NameSurname" placeholder="Name Surname" value="{{ Auth::user()->name }}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Email" class="control-label">Email</label>
+                                            <div class="form-line">
+                                                <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="{{ Auth::user()->email}}" disabled>
+                                            </div>
+                                        </div>
+                                        @foreach ($profile as $prof)
+                                            @if ($prof->account_id == Auth::user()->id)
+                                            <div class="form-group">
+                                                <label for="InputExperience" class="control-label">Description</label>
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" id="NameSurname" name="NameSurname" placeholder="Name Surname" value="Marc K. Hammond" required>
+                                                    <textarea class="form-control" id="InputExperience" name="InputExperience" rows="3">{{ $prof->description }}</textarea>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Email" class="col-sm-2 control-label">Email</label>
-                                            <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <label for="address" class="control-label">Address</label>
                                                 <div class="form-line">
-                                                    <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="example@example.com" required>
+                                                    <input type="text" class="form-control" name="address" value="{{ $prof->address}}">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="InputExperience" class="col-sm-2 control-label">Experience</label>
-
-                                            <div class="col-sm-10">
-                                                <div class="form-line">
-                                                    <textarea class="form-control" id="InputExperience" name="InputExperience" rows="3" placeholder="Experience"></textarea>
+                                            <div class="row">
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for="gender">Gender</label>
+                                                        <div class="form-group">
+                                                           
+                                                                <select class="form-control show-tick" tabindex="-98">
+                                                                    <option value="">-- Please select --</option>
+                                                                    <option value="10">10</option>
+                                                                    <option value="20">20</option>
+                                                                    <option value="30">30</option>
+                                                                    <option value="40">40</option>
+                                                                    <option value="50">50</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            @endif
+                                        @endforeach
+                                        
                                         <div class="form-group">
-                                            <label for="InputSkills" class="col-sm-2 control-label">Skills</label>
-
-                                            <div class="col-sm-10">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" id="InputSkills" name="InputSkills" placeholder="Skills">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <input type="checkbox" id="terms_condition_check" class="chk-col-red filled-in" />
-                                                <label for="terms_condition_check">I agree to the <a href="#">terms and conditions</a></label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="submit" class="btn btn-danger">SUBMIT</button>
-                                            </div>
+                                            <button type="submit" class="btn btn-danger">SUBMIT</button>
                                         </div>
                                     </form>
                                 </div>

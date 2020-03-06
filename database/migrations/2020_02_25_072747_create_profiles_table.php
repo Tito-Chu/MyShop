@@ -19,7 +19,7 @@ class CreateProfilesTable extends Migration
             $table->string('gender');
             $table->string('birthdate');
             $table->string('description');
-            $table->integer('contactnumber');
+            $table->string('contactnumber');
             $table->timestamps();
         });
     }
