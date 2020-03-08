@@ -47,7 +47,7 @@
                         <div class="col-xs-6">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <a href="/register">Register As Seller!</a>
+                                    <a href="/seller">Register As Seller!</a>
                                 </div>
                                 <div class="col-xs-12">
                                     <a href="/register">Register As Buyyer!</a>

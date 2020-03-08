@@ -321,7 +321,7 @@
                                             <div class="form-group">
                                                 <label for="InputExperience" class="control-label">Description</label>
                                                 <div class="form-line">
-                                                    <textarea class="form-control" id="InputExperience" name="InputExperience" rows="3">{{ $prof->description }}</textarea>
+                                                    <textarea class="form-control"  name="InputExperience" rows="3">{{ $prof->description }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -330,20 +330,39 @@
                                                     <input type="text" class="form-control" name="address" value="{{ $prof->address}}">
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-xs-12">
+
+                                            <div class="row container">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="gender">Gender</label>
-                                                        <div class="form-group">
-                                                           
-                                                                <select class="form-control show-tick" tabindex="-98">
-                                                                    <option value="">-- Please select --</option>
-                                                                    <option value="10">10</option>
-                                                                    <option value="20">20</option>
-                                                                    <option value="30">30</option>
-                                                                    <option value="40">40</option>
-                                                                    <option value="50">50</option>
-                                                                </select>
+                                                        <div class="form-line">
+                                                            <select class="form-control show-tick">
+                                                                @if ($prof->gender == "Male")
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                                @else
+                                                                    <option value="Female">Female</option>
+                                                                    <option value="Male">Male</option>
+                                                                @endif
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="birthdate">Birthdate</label>
+                                                        <div class="form-line">
+                                                            <input type="date" name="birthdate" value="{{ $prof->birthdate }}" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="contact">Contact Number</label>
+                                                        <div class="form-line">
+                                                            <input type="text" name="contact" class="form-control" value="{{ $prof->contactnumber}}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -352,7 +371,7 @@
                                         @endforeach
                                         
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-danger">SUBMIT</button>
+                                            <button type="submit" class="btn btn-danger">Update</button>
                                         </div>
                                     </form>
                                 </div>

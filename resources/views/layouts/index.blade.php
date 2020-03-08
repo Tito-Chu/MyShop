@@ -38,6 +38,8 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+      <!-- Bootstrap Select Css -->
+      <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 </head>
 
 <body class="theme-red">
@@ -102,6 +104,8 @@
 
     <!-- Demo Js -->
     <script src="../../js/demo.js"></script>
+     <!-- Select Plugin Js -->
+     <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </body>
 
 </html>
