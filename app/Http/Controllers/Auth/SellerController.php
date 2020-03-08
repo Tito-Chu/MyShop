@@ -65,7 +65,7 @@ class SellerController extends Controller
      */
     protected function create(array $data)
     {
-        $account_type = 'admin';
+        $account_type = 'seller';
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
