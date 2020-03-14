@@ -3,7 +3,7 @@
     <div class="login-box">
         <div class="card">
             <div class="body">
-                <form id="sign_up" method="POST" action="{{ route('seller') }}">
+                <form id="sign_up" method="POST" action="{{ route('seller.store') }}">
                     @csrf
                     <div class="msg">Register as a new seller</div>
                     <div class="input-group">
